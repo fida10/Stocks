@@ -19,7 +19,7 @@ public class GoogleSearch {
 		System.out.println("The value of the stock from " + nameOfCompanyStock + " is " + stockValue);
 		screenShot(dr);
 		dr.navigate().back();
-		return stockValue;
+		return stockValue; //a change
 	} public static void screenShot(WebDriver dr) throws IOException {
 		File f = ((TakesScreenshot)dr).getScreenshotAs(OutputType.FILE);
 		FileUtils.copyFileToDirectory(f, new File("/Users/fida10/Documents/Lynda Hackalicious exercise files/JavaPractice/Stocks/out/screenshots/ScreenshotsSaved")); //Change this path to where you want to save the screenshots
