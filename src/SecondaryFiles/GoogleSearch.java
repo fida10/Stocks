@@ -1,11 +1,14 @@
 package SecondaryFiles;
 
+import net.bytebuddy.asm.Advice.Local;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -20,10 +23,28 @@ public class GoogleSearch {
 		screenShot(dr);
 		dr.navigate().back();
 		return stockValue; //a change
-	} public static void screenShot(WebDriver dr) throws IOException {
+	}
+	public static String datedStringDir(){
+		DateTimeFormatter dtForm = DateTimeFormatter.ofPattern("yyyy/MM/dd hh a");
+		LocalDateTime current = LocalDateTime.now();
+		String currentDate = "/" + dtForm.format(current);
+		String fileDirToSave = String.format("//Users//fida10/Documents//Lynda Hackalicious exercise files//JavaPractice//Stocks//out//screenshots//ScreenshotsSaved%s", currentDate); //Change this path to where you want to save the screenshots
+		return fileDirToSave;
+	}
+	public static void newDirWithDate(){
+		String fileDirToSave = datedStringDir();
+		boolean mkdirSuccess = new File(fileDirToSave).mkdir();
+		System.out.println("Dated directory made successfully? " + mkdirSuccess);
+	}
+	public static void clearScreenShots() throws IOException{
+		File savedDir = new File("//Users//fida10/Documents//Lynda Hackalicious exercise files//JavaPractice//Stocks//out//screenshots//ScreenshotsSaved");
+		FileUtils.cleanDirectory(savedDir);
+	}
+	public static void screenShot(WebDriver dr) throws IOException {
+		final String fileDirToSave = datedStringDir(); //this should mean that the first date and time gotten are the last for each instance of the running of the program
 		File f = ((TakesScreenshot)dr).getScreenshotAs(OutputType.FILE);
-		FileUtils.copyFileToDirectory(f, new File("/Users/fida10/Documents/Lynda Hackalicious exercise files/JavaPractice/Stocks/out/screenshots/ScreenshotsSaved")); //Change this path to where you want to save the screenshots
-		}
+		FileUtils.copyFileToDirectory(f, new File(fileDirToSave));
+	}
 	public static void searchCompaniesAndStockVals(WebDriver dr) throws IOException{
 		String[] companies = {"Samsung", "United Airlines", "Airbus", "Boeing", "X", "Uber", "Lyft", "Netflix"}; //change this to whatever companies you want
 		List<String> companiesInList = Arrays.asList(companies);

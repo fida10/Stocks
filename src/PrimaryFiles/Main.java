@@ -15,7 +15,10 @@ public class Main {
 		dr.manage().window().maximize();
 
 		dr.get("http://google.com");
+		GoogleSearch.clearScreenShots();
+		GoogleSearch.newDirWithDate();
 		GoogleSearch.searchCompaniesAndStockVals(dr);
 		dr.quit();
+		//this can be improved; it should be able to get the exact time and seconds and store it all in the same folders. More work is needed. It looks as though the process of making a directory is laced into the loop, thereby creating a new loop every time
 	}
 }
