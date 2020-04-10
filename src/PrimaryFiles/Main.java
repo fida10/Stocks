@@ -15,7 +15,7 @@ public class Main {
 		dr.manage().window().maximize();
 
 		dr.get("http://google.com");
-		GoogleSearch.clearScreenShots();
+		//GoogleSearch.clearScreenShots();
 		GoogleSearch.newDirWithDate();
 		GoogleSearch.searchCompaniesAndStockVals(dr);
 		dr.quit();

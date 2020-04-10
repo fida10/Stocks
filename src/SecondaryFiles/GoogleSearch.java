@@ -46,7 +46,7 @@ public class GoogleSearch {
 		FileUtils.copyFileToDirectory(f, new File(fileDirToSave));
 	}
 	public static void searchCompaniesAndStockVals(WebDriver dr) throws IOException{
-		String[] companies = {"Samsung", "United Airlines", "Airbus", "Boeing", "X", "Uber", "Lyft", "Netflix"}; //change this to whatever companies you want
+		String[] companies = {"Amazon", "American Airlines", "Tata", "Boeing", "X", "Uber", "Lyft", "Netflix"}; //change this to whatever companies you want
 		List<String> companiesInList = Arrays.asList(companies);
 		List<String> valuesOfStocks = new ArrayList<>();
 		for (int i = 0; i < companiesInList.size(); i++) {
